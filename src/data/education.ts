@@ -1,0 +1,26 @@
+export const education = [
+  {
+    institution: "Universitas Gadjah Mada",
+    monogram: "UGM",
+    logo: "/images/universities/UGM_logo.png",
+    logoAlt: "Universitas Gadjah Mada official university logo",
+    degree: "Bachelor of Computer Science (S.Kom.)",
+    period: "July 2024 — Present",
+    location: "Yogyakarta, Indonesia",
+    grade: "3.73 / 4.00",
+    gradeLabel: "CGPA",
+    note: "88 credits completed",
+  },
+  {
+    institution: "Nanyang Technological University",
+    monogram: "NTU",
+    logo: "/images/universities/NTU.png",
+    logoAlt: "Nanyang Technological University official coat of arms",
+    degree: "Summer Exchange — Information Technology and Entrepreneurship",
+    period: "June 2026 — July 2026",
+    location: "Singapore",
+    grade: "4.79 / 5.00",
+    gradeLabel: "Grade",
+    note: "GEM Trailblazer Summer Programme",
+  },
+];

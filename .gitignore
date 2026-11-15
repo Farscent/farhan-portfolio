@@ -1,0 +1,18 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+artifacts/
+.npm-cache/
+output/
+.vercel/
+# Source originals stay local; deployed copies live in public/.
+/Farhan.jpg
+/reference.jpeg
+/UGM.png
+/NTU.png
+/UGM_logo.png
+/public/images/universities/UGM.png

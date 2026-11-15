@@ -1,0 +1,120 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { navigation, profile } from "@/data/profile";
+
+export function Header() {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const pathname = usePathname();
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-color-scheme: dark)");
+    const onSystem = () => {
+      try {
+        if (localStorage.getItem("theme")) return;
+      } catch {}
+      document.documentElement.dataset.theme = query.matches ? "dark" : "light";
+    };
+    query.addEventListener("change", onSystem);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries)
+          if (entry.isIntersecting) setActive(entry.target.id);
+      },
+      { rootMargin: "-15% 0px -60% 0px", threshold: 0 },
+    );
+    navigation.forEach(({ id }) => {
+      const node = document.getElementById(id);
+      if (node) observer.observe(node);
+    });
+    return () => {
+      observer.disconnect();
+      query.removeEventListener("change", onSystem);
+    };
+  }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        document.getElementById("menu-toggle")?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+  function toggleTheme() {
+    const next = document.documentElement.dataset.theme !== "dark";
+    document.documentElement.dataset.theme = next ? "dark" : "light";
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {}
+  }
+  return (
+    <header className="site-header">
+      <div className="nav-shell container">
+        <Link
+          href="/"
+          className="brand"
+          aria-label="Farhan Adiwidya Pradana, home"
+          onClick={() => setOpen(false)}
+        >
+          <span className="monogram">
+            f<span>.</span>
+          </span>
+          <span>
+            farhan<span className="brand-suffix"> / portfolio</span>
+          </span>
+        </Link>
+        <nav
+          aria-label="Main navigation"
+          className={`main-nav ${open ? "is-open" : ""}`}
+          id="main-navigation"
+        >
+          {navigation.map((item) => (
+            <Link
+              href={`/#${item.id}`}
+              key={item.id}
+              aria-current={active === item.id ? "location" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+              <span className="active-dot" />
+            </Link>
+          ))}
+        </nav>
+        <div className="nav-actions">
+          <button
+            className="icon-button theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle light and dark theme"
+          >
+            <Sun size={18} className="sun-icon" />
+            <Moon size={18} className="moon-icon" />
+          </button>
+          <a
+            className="nav-contact"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Let’s talk on LinkedIn (opens in a new tab)"
+          >
+            Let’s talk <ArrowUpRight size={16} />
+          </a>
+          <button
+            id="menu-toggle"
+            className="icon-button menu-toggle"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            aria-controls="main-navigation"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <X size={21} /> : <Menu size={21} />}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+}
