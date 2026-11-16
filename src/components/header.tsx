@@ -21,11 +21,11 @@ export function Header() {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries)
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) setActive(entry.target.id === "top" ? "" : entry.target.id);
       },
       { rootMargin: "-15% 0px -60% 0px", threshold: 0 },
     );
-    navigation.forEach(({ id }) => {
+    [{ id: "top" }, ...navigation].forEach(({ id }) => {
       const node = document.getElementById(id);
       if (node) observer.observe(node);
     });

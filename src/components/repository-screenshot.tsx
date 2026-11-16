@@ -28,15 +28,15 @@ export function RepositoryScreenshot({
     <Image
       src={url}
       alt={alt}
-      width={897}
-      height={675}
+      width={variant === "workflow" ? 1634 : variant === "security" ? 1090 : 897}
+      height={variant === "workflow" ? 498 : variant === "security" ? 615 : 675}
       className={thumbnail ? "project-screenshot" : undefined}
       sizes={
         thumbnail
-          ? "(max-width: 600px) calc(100vw - 40px), 50vw"
+          ? "(max-width: 760px) calc(100vw - 40px), (max-width: 1200px) 70vw, 900px"
           : "(max-width: 600px) calc(100vw - 40px), 75vw"
       }
-      unoptimized
+      unoptimized={!url.startsWith("/")}
       onError={() => setFailed(true)}
     />
   );

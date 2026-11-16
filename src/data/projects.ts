@@ -107,12 +107,16 @@ export const projects: Project[] = [
     status: "Business intelligence project",
     sourceReviewed: "2026-11-15",
     screenshot: {
-      url: "https://github.com/user-attachments/assets/fd413b00-d62c-4e83-97f7-8d67a624407f",
+      url: "/images/projects/nexahub.png",
       alt: "NexaHub Looker Studio marketing performance dashboard from the project README",
     },
   },
   {
     slug: "internship-intelligence",
+    screenshot: {
+      url: "/images/projects/internship-extraction.png",
+      alt: "Actual n8n email extraction workflow with Gmail intake, Gemini extraction, and a manual review record",
+    },
     title: "Internship Intelligence",
     category: "AI & Automation",
     eyebrow: "Less tracking. More intention.",
@@ -155,6 +159,10 @@ export const projects: Project[] = [
   },
   {
     slug: "autosiem",
+    screenshot: {
+      url: "/images/projects/autosiem.png",
+      alt: "AutoSIEM course presentation showing dataset preparation, model training, and evaluation with class imbalance caveats",
+    },
     title: "AutoSIEM",
     category: "AI & Automation",
     eyebrow: "Signals into security context",

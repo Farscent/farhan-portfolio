@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Github } from "lucide-react";
 import { categories, projects } from "@/data/projects";
 import { ProjectVisual } from "./project-visual";
-import { RepositoryScreenshot } from "./repository-screenshot";
 import { Reveal, SectionHeading } from "./ui";
 
 const orderedProjects = [...projects].sort(
@@ -51,86 +50,66 @@ export function Projects() {
         </div>
         <div className="project-grid" id="project-results">
           {visible.map((project) => (
-            <Reveal key={project.slug}>
+            <Reveal key={project.slug} className={`project-entry project-entry-${project.image} ${project.featured ? "project-featured" : "project-compact"}`}>
               <article className="project-card">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="project-image-link"
                   aria-label={`Read the ${project.title} case study`}
                 >
-                  {project.screenshot ? (
-                    <RepositoryScreenshot
-                      url={project.screenshot.url}
-                      alt={project.screenshot.alt}
-                      variant={project.image}
-                      thumbnail
-                    />
-                  ) : (
-                    <ProjectVisual variant={project.image} />
-                  )}
+                  <ProjectVisual variant={project.image} />
                   <span className="image-arrow">
                     <ArrowUpRight size={21} />
                   </span>
                 </Link>
-                <div className="project-meta">
-                  <span>
-                    <b className="project-number">
-                      {String(orderedProjects.indexOf(project) + 1).padStart(
-                        2,
-                        "0",
-                      )}
-                      .
-                    </b>{" "}
-                    {project.category}
-                  </span>
-                  <span>
-                    {project.status.includes("First Place")
-                      ? "First place"
-                      : project.status.includes("Honorable")
-                        ? "Honorable mention"
-                        : project.status.includes("Synthetic")
-                          ? "Synthetic data"
-                          : project.status.includes("MVP")
-                            ? "Local prototype"
-                            : "Case study"}
-                  </span>
-                </div>
-                <h3>
-                  <Link href={`/projects/${project.slug}`}>
-                    {project.title}
-                  </Link>
-                </h3>
-                <p className="project-summary">{project.summary}</p>
-                <p className="project-approach">
-                  <span>Approach</span> {project.approach[0]}
-                </p>
-                <div className="tech-list">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span key={tech}>{tech}</span>
-                  ))}
-                </div>
-                <div className="project-links">
-                  <Link href={`/projects/${project.slug}`}>
-                    Explore project <ArrowUpRight size={16} />
-                  </Link>
-                  <div>
-                    <a
-                      href={project.repositoryUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} GitHub repository (opens in a new tab)`}
-                    >
-                      <Github size={16} /> GitHub
-                    </a>
-                    {project.demoUrl && (
+                <div className="project-editorial-copy">
+                  <div className="project-meta">
+                    <span>
+                      <b className="project-number">
+                        {String(orderedProjects.indexOf(project) + 1).padStart(
+                          2,
+                          "0",
+                        )}
+                        .
+                      </b>{" "}
+                      {project.category}
+                    </span>
+                    <span>{project.status.replace("Local MVP", "Local prototype")}</span>
+                  </div>
+                  <h3>
+                    <Link href={`/projects/${project.slug}`}>
+                      {project.title}
+                    </Link>
+                  </h3>
+                  <p className="project-summary">{project.summary}</p>
+                  <div className="tech-list">
+                    {project.technologies.slice(0, 4).map((tech) => (
+                      <span key={tech}>{tech}</span>
+                    ))}
+                  </div>
+                  <div className="project-links">
+                    <Link href={`/projects/${project.slug}`}>
+                      Explore project <ArrowUpRight size={16} />
+                    </Link>
+                    <div>
                       <a
-                        href={project.demoUrl}
+                        href={project.repositoryUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${project.title} GitHub repository (opens in a new tab)`}
                       >
-                        Live dashboard <ArrowUpRight size={14} />
+                        <Github size={16} /> GitHub
                       </a>
-                    )}
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Live dashboard <ArrowUpRight size={14} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </article>

@@ -1,3 +1,17 @@
+# Latest validation: conceptual project artwork
+
+All eight projects now use original responsive vector compositions in the gallery and case studies. Lint, TypeScript, production build, category filtering, route checks, and Chrome checks at 375/768/1440px pass. Gallery and case studies contain no project screenshots or removed generic captions. The exact requested hero introduction is verified, with its original bold university styling. See [REDESIGN.md](REDESIGN.md) for details and current screenshot paths.
+
+---
+
+# Latest validation: 16 November 2026
+
+The PRD redesign is implemented. Lint, TypeScript, and the production build pass. Chrome screenshots and interaction checks now cover 375px, 768px, and 1440px. Both university logos load. See [REDESIGN.md](REDESIGN.md) for current requirement coverage, evidence, screenshot paths, and remaining asset gaps.
+
+The records below are historical and may describe limitations that have since been resolved.
+
+---
+
 # Current publication readiness
 
 Lint, TypeScript, and the Next.js production build passed after the supplied university logos, transparent logo alignment, and LinkedIn CTAs were integrated. The earlier missing-reference and missing-logo notes below describe a previous revision: reference.jpeg has since been inspected and the supplied logos are installed. Browser viewport verification remains incomplete.
@@ -40,3 +54,16 @@ Official institutional logo sources were inspected, but HTTPS downloads from the
 The connected browser host is unavailable, and Playwright CLI is not installed/cached (`npx --offline @playwright/cli --help` returns ENOTCACHED). Desktop/mobile rendered screenshots, overflow measurements, keyboard interaction, and theme/filter/menu behavior were not exercised in a browser. Responsive source review and HTTP checks do not replace browser QA. Before publishing, inspect 320, 390, 768, 1024, and 1440px widths in both themes and test the existing interactions.
 
 No deployment was performed. Set the final `NEXT_PUBLIC_SITE_URL` before publishing. No CV PDF was available; the supplied portrait remains in use. All original repository scope limitations, synthetic-data disclosure, human-review requirements, and noncausal analysis wording remain.
+# Beyond the Code artwork refinement
+
+## V6 targeted visual refinement
+
+- Added original, reusable expertise and award SVGs and a conceptual research-publication illustration. Preserved all factual copy, external URLs, and the existing hero, project artwork, and hobby illustrations.
+- ESLint, TypeScript validation, and production build passed.
+- Browser checks passed at 375, 768, and 1440 pixels in both themes without horizontal overflow. Reviewed section screenshots in `output/playwright/v6-*.png` and corrected tablet expertise-row spacing.
+- Theme toggle, project expansion (8 projects), category filtering, in-page anchors, and all 8 project routes passed; routes returned HTTP 200. Research and award URLs were preserved; third-party availability was not exhaustively tested.
+
+- Replaced both generic hobby drawings with original responsive SVG editorial illustrations; preserved section copy and card structure.
+- ESLint, TypeScript validation, and production build passed.
+- Production-browser checks at 1440, 768, and 375 pixels passed in light and dark themes: both images loaded and no horizontal overflow.
+- Screenshots: `output/playwright/hobbies-{1440,768,375}-{light,dark}.png`.

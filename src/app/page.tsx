@@ -4,16 +4,14 @@ import {
   ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
-  Code2,
-  Compass,
   MapPin,
   MoveUpRight,
-  Trophy,
   Users,
 } from "lucide-react";
 import { Reveal, SectionHeading, SocialLinks } from "@/components/ui";
 import { Projects } from "@/components/projects";
 import { BeyondCode } from "@/components/beyond-code";
+import { EditorialMark, ResearchArtwork } from "@/components/editorial-graphic";
 import { getSiteUrl, profile } from "@/data/profile";
 import { contactPrivacy } from "@/data/contact";
 import { experience } from "@/data/experience";
@@ -50,67 +48,45 @@ export default function Home() {
         }}
       />
       <section className="hero container" id="top">
-        <Reveal className="hero-masthead">
-          <div>
-            <p className="hero-kicker">Computer Science, UGM</p>
-            <h1>
-              <span className="hero-greeting">Hey, I’m</span>{" "}
-              <span className="hero-name">Farhan.</span>
-            </h1>
+        <div className="hero-spread">
+          <div className="hero-title-block">
+            <p className="hero-greeting">Hey, I’m</p>
+            <h1><span className="hero-name">Farhan<span className="hero-period">.</span></span></h1>
+            <p className="hero-discipline">Data, AI & Engineering</p>
           </div>
-          <p className="hero-headline">
-            I build with data, think in systems, and enjoy the process.
-          </p>
-        </Reveal>
-        <div className="hero-grid">
-          <Reveal className="hero-copy">
+          <figure className="hero-photo">
+            <Image
+              src={profile.portrait.src}
+              alt={profile.portrait.alt}
+              width={profile.portrait.width}
+              height={profile.portrait.height}
+              sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 96px) * .475), (max-width: 1376px) 43vw, 560px"
+              preload
+              className="hero-portrait"
+            />
+            <figcaption><span>A face to the name</span><strong>{profile.name}</strong></figcaption>
+          </figure>
+          <div className="hero-copy">
+            <p className="hero-headline">I build with data, think in systems, and enjoy the process.</p>
             <p className="hero-description">
-              Computer Science student at{" "}
-              <strong>Universitas Gadjah Mada</strong>, exploring data
-              engineering, artificial intelligence, and the intersection of
-              technology and business.
+              Computer Science student at <strong>Universitas Gadjah Mada</strong>, exploring data,
+              artificial intelligence, and the intersection of technology and business.
             </p>
             <p className="hero-personal">
               Powered by curiosity, <a href="#beyond-code">anime</a>, and an
               unreasonable interest in <a href="#beyond-code">cars</a>.
             </p>
             <div className="hero-buttons">
-              <a className="button button-primary" href="#work">
-                Explore my work <ArrowDownRight size={17} />
-              </a>
-              <a className="button button-text" href="#contact">
-                Let’s connect <ArrowUpRight size={17} />
-              </a>
+              <a className="button button-primary" href="#work">Explore my work <ArrowDownRight size={17} /></a>
+              <a className="button button-text" href="#contact">Let’s connect <ArrowUpRight size={17} /></a>
             </div>
             <div className="hero-social-row">
               <SocialLinks />
               <span className="vertical-divider" />
-              <span>
-                <MapPin size={13} /> Yogyakarta, Indonesia
-              </span>
+              <span><MapPin size={13} /> Yogyakarta, Indonesia</span>
             </div>
-          </Reveal>
-          <Reveal className="hero-art" delay={0.15}>
-            <figure className="portrait-frame">
-              <Image
-                src={profile.portrait.src}
-                alt={profile.portrait.alt}
-                width={profile.portrait.width}
-                height={profile.portrait.height}
-                sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1100px) 36vw, 370px"
-                preload
-                className="hero-portrait"
-              />
-              <figcaption className="portrait-caption">
-                <span>A face to the name</span>
-                <strong>{profile.name}</strong>
-              </figcaption>
-            </figure>
-            <p className="hero-art-note">
-              <span className="tiny-cross">+</span> Usually learning something
-              new.
-            </p>
-          </Reveal>
+            <p className="hero-learning-note">Usually learning something new.</p>
+          </div>
         </div>
         <div className="hero-bottom">
           <span>Technology · Data · Business</span>
@@ -119,6 +95,8 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <Projects />
 
       <section id="about" className="section about-section">
         <div className="container">
@@ -159,31 +137,30 @@ export default function Home() {
           <div className="pillars">
             {[
               {
-                icon: Code2,
                 title: "Technology",
+                graphic: "technology" as const,
                 text: "Data pipelines, machine learning, and AI. I like understanding the details, then putting them to work.",
                 label: "Build, test, learn",
               },
               {
-                icon: Compass,
                 title: "Business & strategy",
+                graphic: "strategy" as const,
                 text: "The question before the code: what does this need to do, and who needs it?",
                 label: "Start with the question",
               },
               {
-                icon: Users,
                 title: "Leadership",
+                graphic: "leadership" as const,
                 text: "Planning the work, listening to the team, and helping everyone make progress together.",
                 label: "Good work is a team sport",
               },
             ].map((pillar, i) => (
               <Reveal key={pillar.title} delay={i * 0.08}>
-                <div className="pillar">
-                  <div className="pillar-top">
-                    <pillar.icon size={23} strokeWidth={1.5} />
-                    <span>0{i + 1}</span>
+                <div className="profile-theme">
+                  <div className="profile-theme-heading">
+                    <EditorialMark kind={pillar.graphic} />
+                    <h3>{pillar.title}</h3>
                   </div>
-                  <h3>{pillar.title}</h3>
                   <p>{pillar.text}</p>
                   <span className="pillar-label">{pillar.label}</span>
                 </div>
@@ -193,7 +170,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Projects />
 
       <section id="experience" className="section experience-section">
         <div className="container">
@@ -310,7 +286,7 @@ export default function Home() {
           />
           <div className="achievement-layout">
             <div>
-              {achievements.map((item) => (
+              {achievements.map((item, index) => (
                 <Reveal key={item.title}>
                   <a
                     className="award-row"
@@ -319,7 +295,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <span className="award-icon">
-                      <Trophy size={22} strokeWidth={1.5} />
+                      <EditorialMark kind={index === 0 ? "analytics" : "security"} />
                     </span>
                     <div>
                       <span className="award-year">{item.year}</span>
@@ -349,6 +325,7 @@ export default function Home() {
                   <span className="eyebrow">Research · {research.year}</span>
                   <ArrowUpRight size={23} />
                 </div>
+                <ResearchArtwork />
                 <h3>
                   <a
                     href={research.url}

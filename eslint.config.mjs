@@ -7,6 +7,8 @@ export default defineConfig([
   globalIgnores([
     ".next/**",
     "out/**",
+    "output/**",
+    ".playwright-cli/**",
     "node_modules/**",
     "artifacts/**",
     ".npm-cache/**",

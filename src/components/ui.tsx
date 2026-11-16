@@ -18,11 +18,11 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reduced ? false : { opacity: 0, y: 6 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{
-        duration: 0.28,
+        duration: reduced ? 0 : 0.28,
         delay: Math.min(delay, 0.08),
         ease: "easeOut",
       }}
@@ -32,7 +32,6 @@ export function Reveal({
   );
 }
 export function SectionHeading({
-  number,
   label,
   title,
   description,
@@ -45,10 +44,8 @@ export function SectionHeading({
   return (
     <Reveal className="section-heading">
       <div>
-        <p className="eyebrow">
-          <span>{number}.</span> {label}
-        </p>
         <h2>{title}</h2>
+        <p className="section-caption">{label}</p>
       </div>
       {description && <p className="section-description">{description}</p>}
     </Reveal>

@@ -8,6 +8,8 @@ next-env.d.ts
 artifacts/
 .npm-cache/
 output/
+.playwright-cli/
+.impeccable/hook.cache.json
 .vercel/
 # Source originals stay local; deployed copies live in public/.
 /Farhan.jpg

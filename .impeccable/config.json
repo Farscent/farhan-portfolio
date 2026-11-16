@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/app/magazine.css"
+        ],
+        "createdAt": "2026-11-16T09:59:38.795Z",
+        "reason": "Agent verified false positive: research-card explicitly sets border-radius: 0; production-browser computed styles confirm all four corners are 0px. The 4px cobalt rule is intentional editorial publication framing."
+      }
+    ]
+  }
+}

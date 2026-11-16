@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs>
+ <linearGradient id="silver" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#65727a"/><stop offset=".35" stop-color="#b8c3c8"/><stop offset=".6" stop-color="#f0f3f2"/><stop offset="1" stop-color="#738189"/></linearGradient>
+ <pattern id="carbon" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path d="M0 0H9M0 4H9" stroke="#9eaeb5" stroke-opacity=".1" stroke-width="2"/></pattern>
+</defs>
+<rect width="1200" height="900" fill="#11191d"/>
+<path d="M-100 740L1110-80H1290L80 900H-100Z" fill="#1c262c"/>
+<path d="M-100 770L1180-100M-100 800L1220-100" stroke="#56666e" stroke-opacity=".28" stroke-width="2"/>
+<!-- Airflow wraps around the front wing and exposed tire volumes. -->
+<g stroke="#55b8b0" fill="none" stroke-width="1.8" opacity=".48">
+ <path d="M1320 90C1000 41 973 204 853 222S640 154 437 271S203 466-100 526"/>
+ <path d="M1320 119C1015 75 984 231 861 246S634 186 448 294S217 491-100 556"/>
+ <path d="M1320 148C1020 111 997 256 877 271S666 203 460 317S235 513-100 586"/>
+ <path d="M1290 502C1045 449 1038 527 894 613S684 574 509 712S234 868-80 890"/>
+ <path d="M1290 532C1051 481 1053 550 907 640S699 600 520 738S246 891-80 918"/>
+ <path d="M1290 562C1067 516 1066 577 919 667S707 632 531 766S249 918-80 947"/>
+</g>
+<!-- A single restrained circuit-like line gives context, without game controls. -->
+<g transform="translate(875 58)" fill="none" stroke="#84959d" stroke-width="2"><path d="M0 74L32 44L78 49L93 22L137 16L181 36L208 29L232 60L220 97L176 102L155 84L115 107L70 98L32 121L6 105Z"/><path d="M90 23L111 37" stroke="#57d0c2" stroke-width="5"/></g>
+<g transform="translate(177 611) rotate(-30) scale(1.1)">
+ <!-- Suspension is visible between chassis and all four slick tires. -->
+ <g fill="#080d10" stroke="#48565e" stroke-width="1.5">
+  <rect x="62" y="-172" width="128" height="91" rx="17"/><rect x="62" y="81" width="128" height="91" rx="17"/>
+  <rect x="535" y="-163" width="106" height="82" rx="14"/><rect x="535" y="81" width="106" height="82" rx="14"/>
+ </g>
+ <g stroke="#afbdc3" stroke-width="2" fill="none" opacity=".6"><path d="M76-156H176M76-146H176M76 146H176M76 156H176M548-147H628M548-137H628M548 137H628M548 147H628"/></g>
+ <g stroke="#798991" stroke-width="4" fill="none"><path d="M133-81L252-36L164-20M133 81L252 36L164 20M574-81L471-29L532-5M574 81L471 29L532 5"/></g>
+ <!-- Rear wing, diffuser and narrow power-unit cover. -->
+ <path d="M22-133H68V133H22Z" fill="#a3b1b7"/><path d="M20-117H73M20 117H73" stroke="#56cbbd" stroke-width="7"/>
+ <path d="M30-92H62V92H30Z" fill="#1c282e"/><path d="M61-62L173-36V36L61 62Z" fill="#2a363c"/>
+ <path d="M88-45L276-35L313-74L421-71L484-39L595-15L701-8V8L595 15L484 39L421 71L313 74L276 35L88 45Z" fill="url(#silver)" stroke="#b9c6cb" stroke-width="1.5"/>
+ <!-- Sculpted sidepods and undercut carbon floor. -->
+ <path d="M245-45L290-100L417-98L476-53L412-28L315-30Z" fill="#131e24" stroke="#7e969e" stroke-width="2"/>
+ <path d="M245 45L290 100L417 98L476 53L412 28L315 30Z" fill="#131e24" stroke="#7e969e" stroke-width="2"/>
+ <path d="M271-64L299-84L399-81L449-52L401-44L320-46Z" fill="#a4b6bd"/>
+ <path d="M271 64L299 84L399 81L449 52L401 44L320 46Z" fill="#5f7881"/>
+ <path d="M281-98L417-96L475-53M281 98L417 96L475 53" stroke="#55d4c3" stroke-width="5" fill="none"/>
+ <path d="M233-57L215-81L271-105L436-108L491-65L481-48M233 57L215 81L271 105L436 108L491 65L481 48" stroke="#33484f" stroke-width="3" fill="none"/>
+ <!-- Cockpit, halo and head protection. -->
+ <ellipse cx="383" cy="0" rx="67" ry="27" fill="#070d10"/>
+ <path d="M353-25C407-37 448-16 448 0S407 37 353 25" stroke="#d1dbde" stroke-width="7" fill="none"/>
+ <path d="M448 0H477" stroke="#d1dbde" stroke-width="6"/>
+ <ellipse cx="381" cy="0" rx="17" ry="20" fill="#4a6a70"/>
+ <path d="M381-16V16" stroke="#a9c5c6" stroke-width="2"/>
+ <path d="M322 0H106" stroke="#222e35" stroke-width="11"/>
+ <path d="M320-8L276-28L115-21" fill="none" stroke="#6ec7be" stroke-width="2"/>
+ <!-- Long nose and multi-element front wing. -->
+ <path d="M474-20L577-12L699-7V7L577 12L474 20" fill="url(#silver)"/>
+ <path d="M679-142L722-134L742-104L724-33V33L742 104L722 134L679 142L686 47V-47Z" fill="#a6b5bc" stroke="#d0d9dc" stroke-width="1.5"/>
+ <path d="M701-123L714-110L699-40V40L714 110L701 123M715-123L728-108L714-37V37L728 108L715 123" fill="none" stroke="#263c43" stroke-width="4"/>
+ <path d="M677-141H708M677 141H708" stroke="#54d3c1" stroke-width="8"/>
+ <path d="M711-126L730-109M711 126L730 109" stroke="#58cbbb" stroke-width="4"/>
+ <path d="M296-80H406M296 80H406" stroke="#131e24" stroke-width="4" stroke-dasharray="2 5"/>
+ <path d="M461-12L603-7M461 12L603 7" stroke="#ebf0ed" stroke-width="1.5" opacity=".8"/>
+ <path d="M96-35L266-30M96 35L266 30" stroke="#dce4e5" stroke-width="1.5" opacity=".4"/>
+</g>
+<!-- Sparse engineering registration, no fake performance numbers. -->
+<g stroke="#64767f" stroke-width="1" fill="none" opacity=".5"><path d="M69 71H172M69 82H112M69 71V174M1059 724H1131V825M1047 813H1131"/><path d="M998 728L948 659M989 719H1034M1047 825H1131"/></g>
+<path d="M74 807H198M74 819H151" stroke="#61c9bd" stroke-width="3"/>
+<rect x="22" y="22" width="1156" height="856" fill="none" stroke="#8da2aa" opacity=".18"/>
+<path d="M25 861H329" stroke="#8da2aa" opacity=".35"/>
+</svg>

@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "./project-illustrations.css";
 @import "./editorial.css";
+@import "./magazine.css";
 
 @theme inline {
   --color-background: var(--bg);

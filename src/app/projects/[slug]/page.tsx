@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/projects";
 import { getSiteUrl, profile } from "@/data/profile";
 import { ProjectVisual } from "@/components/project-visual";
-import { RepositoryScreenshot } from "@/components/repository-screenshot";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -147,17 +146,11 @@ export default async function ProjectPage({
           <section id="architecture">
             <p className="eyebrow">04. Technical architecture</p>
             <h2>Technical architecture</h2>
-            <div className="architecture-flow">
-              {project.architecture.map((step, i) => (
-                <div key={step}>
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <p>{step}</p>
-                  {i < project.architecture.length - 1 && (
-                    <ArrowRight size={16} />
-                  )}
-                </div>
+            <ol className="architecture-notes">
+              {project.architecture.map((step) => (
+                <li key={step}>{step}</li>
               ))}
-            </div>
+            </ol>
           </section>
           <section id="outcomes">
             <p className="eyebrow">05. Outcomes & reflection</p>
@@ -180,25 +173,7 @@ export default async function ProjectPage({
               project, not claimed as individual results.
             </p>
           </section>
-          {project.screenshot && (
-            <figure className="repository-screenshot">
-              <RepositoryScreenshot
-                url={project.screenshot.url}
-                alt={project.screenshot.alt}
-                variant={project.image}
-              />
-              <figcaption>
-                Project dashboard, as documented in the repository.{" "}
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open interactive report <ArrowUpRight size={12} />
-                </a>
-              </figcaption>
-            </figure>
-          )}
+
         </div>
       </div>
       <Link className="next-project" href={`/projects/${nextProject.slug}`}>
