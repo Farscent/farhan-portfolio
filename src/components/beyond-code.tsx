@@ -19,7 +19,7 @@ export function BeyondCode() {
         </p>
         <div className="interest-grid">
           {interests.map((interest, index) => (
-            <Reveal key={interest.id}>
+            <Reveal key={interest.id} delay={index * 0.08}>
               <article className={`interest-card interest-${interest.id}`}>
                 <div className="interest-header">
                   <span>After hours · 0{index + 1}</span>
@@ -27,7 +27,7 @@ export function BeyondCode() {
                     ＋
                   </span>
                 </div>
-                <div className="interest-illustration">
+                <Reveal className="interest-illustration" kind="image">
                   <Image
                     src={interest.id === "anime" ? "/images/interests/anime-worldbuilding.svg" : "/images/interests/motorsport-engineering.svg"}
                     alt={interest.id === "anime"
@@ -37,7 +37,7 @@ export function BeyondCode() {
                     height={900}
                     sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1376px) 52vw, 700px"
                   />
-                </div>
+                </Reveal>
                 <div className="interest-copy">
                   <p className="interest-label">{interest.label}</p>
                   <h3>{interest.title}</h3>

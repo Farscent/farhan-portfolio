@@ -6,8 +6,8 @@ import { Reveal } from "./ui";
 export function Education() {
   return (
     <div className="education-list">
-      {education.map((item) => (
-        <Reveal key={item.institution}>
+      {education.map((item, index) => (
+        <Reveal key={item.institution} delay={index * 0.08}>
           <article className="education-row">
             <div className="university-logo">
               <Image

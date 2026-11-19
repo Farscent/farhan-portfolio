@@ -8,7 +8,7 @@ import {
   MoveUpRight,
   Users,
 } from "lucide-react";
-import { Reveal, SectionHeading, SocialLinks } from "@/components/ui";
+import { EditorialDivider, HeroIntro, Reveal, SectionHeading, SocialLinks } from "@/components/ui";
 import { Projects } from "@/components/projects";
 import { BeyondCode } from "@/components/beyond-code";
 import { EditorialMark, ResearchArtwork } from "@/components/editorial-graphic";
@@ -48,13 +48,14 @@ export default function Home() {
         }}
       />
       <section className="hero container" id="top">
-        <div className="hero-spread">
+        <HeroIntro>
           <div className="hero-title-block">
             <p className="hero-greeting">Hey, I’m</p>
             <h1><span className="hero-name">Farhan<span className="hero-period">.</span></span></h1>
             <p className="hero-discipline">Data, AI & Engineering</p>
           </div>
           <figure className="hero-photo">
+            <div className="hero-portrait-frame">
             <Image
               src={profile.portrait.src}
               alt={profile.portrait.alt}
@@ -64,6 +65,7 @@ export default function Home() {
               preload
               className="hero-portrait"
             />
+            </div>
             <figcaption><span>A face to the name</span><strong>{profile.name}</strong></figcaption>
           </figure>
           <div className="hero-copy">
@@ -87,7 +89,7 @@ export default function Home() {
             </div>
             <p className="hero-learning-note">Usually learning something new.</p>
           </div>
-        </div>
+        </HeroIntro>
         <div className="hero-bottom">
           <span>Technology · Data · Business</span>
           <a href="#about">
@@ -181,7 +183,7 @@ export default function Home() {
           />
           <div className="timeline">
             {experience.map((item, i) => (
-              <Reveal key={item.organization}>
+              <Reveal key={item.organization} delay={(i % 3) * 0.06}>
                 <article className="experience-row">
                   <div className="experience-period">
                     <span>{item.period}</span>
@@ -259,7 +261,7 @@ export default function Home() {
           </div>
           <div className="skill-groups">
             {skills.map((group, i) => (
-              <Reveal key={group.title}>
+              <Reveal key={group.title} delay={i * 0.05}>
                 <div className="skill-group">
                   <div className="skill-group-heading">
                     <span>0{i + 1}</span>
@@ -287,7 +289,7 @@ export default function Home() {
           <div className="achievement-layout">
             <div>
               {achievements.map((item, index) => (
-                <Reveal key={item.title}>
+                <Reveal key={item.title} delay={index * 0.08}>
                   <a
                     className="award-row"
                     href={item.href}
@@ -325,7 +327,10 @@ export default function Home() {
                   <span className="eyebrow">Research · {research.year}</span>
                   <ArrowUpRight size={23} />
                 </div>
-                <ResearchArtwork />
+                <div className="research-print">
+                  <span className="research-folio">AI / Learning / Physics</span>
+                  <ResearchArtwork />
+                </div>
                 <h3>
                   <a
                     href={research.url}
@@ -356,10 +361,11 @@ export default function Home() {
 
       <section id="contact" className="contact-section">
         <div className="container">
+          <EditorialDivider />
           <Reveal>
             <div className="contact-top">
               <p className="eyebrow">08. Say hello</p>
-              <MoveUpRight size={32} strokeWidth={1.3} />
+              <span className="contact-symbol" aria-hidden="true"><MoveUpRight size={64} strokeWidth={1} /></span>
             </div>
             <h2>
               Have something in mind<span className="blue">?</span>

@@ -1,0 +1,84 @@
+[
+  {
+    "slug": "internship-intelligence",
+    "screenshot": {
+      "url": "/images/projects/internship-extraction.png",
+      "alt": "Actual n8n email extraction workflow with Gmail intake, Gemini extraction, and a manual review record"
+    },
+    "title": "Internship Intelligence",
+    "category": "AI & Automation",
+    "eyebrow": "Less tracking. More intention.",
+    "summary": "A human-reviewed AI workflow for organizing recruitment emails, application records, and upcoming deadlines.",
+    "problem": "Internship updates arrive across multiple emails. Manually maintaining application stages and deadlines creates repetitive work and opportunities for missed actions.",
+    "approach": [
+      "Normalize Gmail messages with JavaScript and record them in an email log.",
+      "Use Gemini to extract structured information into a review queue.",
+      "Keep approval and application-sheet updates manual in the current MVP.",
+      "Build separate n8n workflows for calendar synchronization and a digest of deadlines in the next three days."
+    ],
+    "architecture": [
+      "Gmail intake",
+      "JavaScript normalization",
+      "Gemini extraction",
+      "Human review queue",
+      "Applications sheet",
+      "Calendar + deadline digest"
+    ],
+    "outcome": "Four locally built MVP workflows cover application intake, AI email extraction, calendar synchronization, and deadline digests. Sanitized workflow exports and setup documentation are available in the repository.",
+    "limitations": "This is a local Docker MVP, not a verified 24/7 autonomous deployment. Approved review records require manual transfer. Changed deadlines and multiple calendar events per application are not yet supported.",
+    "technologies": [
+      "n8n",
+      "Google Gemini",
+      "Gmail API",
+      "Google Sheets",
+      "Google Calendar",
+      "JavaScript",
+      "Docker"
+    ],
+    "repositoryUrl": "https://github.com/Farscent/Internship-Intelligence",
+    "image": "workflow",
+    "featured": true,
+    "status": "Local MVP · Human in the loop",
+    "sourceReviewed": "2026-11-15"
+  },
+  {
+    "slug": "autosiem",
+    "screenshot": {
+      "url": "/images/projects/autosiem.png",
+      "alt": "AutoSIEM course presentation showing dataset preparation, model training, and evaluation with class imbalance caveats"
+    },
+    "title": "AutoSIEM",
+    "category": "AI & Automation",
+    "eyebrow": "Signals into security context",
+    "summary": "A security analytics prototype bringing machine learning and generative AI into fraud investigation.",
+    "problem": "High transaction volumes make manual fraud triage difficult. Analysts need useful signals and readable context to support investigations.",
+    "approach": [
+      "Explore transaction behavior and balance-related features.",
+      "Build an XGBoost fraud classifier with Optuna hyperparameter optimization.",
+      "Use Gemini to support human-readable alert summaries and investigation timelines.",
+      "Visualize fraud patterns, suspicious accounts, and transaction drilldowns with Plotly."
+    ],
+    "architecture": [
+      "Transaction dataset",
+      "Feature preparation",
+      "XGBoost + Optuna",
+      "Behavioral analysis",
+      "Gemini summaries",
+      "Plotly prototype"
+    ],
+    "outcome": "The team prototype received an Honorable Mention at the UGM DCSE Summer Course 2025. The repository documents the model approach and dashboard concepts for security investigation.",
+    "limitations": "A course prototype rather than an operational security service. Reported classifier accuracy alone does not establish real-world fraud detection quality or a production false-positive rate.",
+    "technologies": [
+      "Python",
+      "XGBoost",
+      "Optuna",
+      "Gemini API",
+      "Plotly"
+    ],
+    "repositoryUrl": "https://github.com/Farscent/AUTOSIEM",
+    "image": "security",
+    "featured": true,
+    "status": "Course prototype · Honorable Mention",
+    "sourceReviewed": "2026-11-15"
+  }
+]

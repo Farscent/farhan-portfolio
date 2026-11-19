@@ -42,6 +42,9 @@ export function EditorialMark({ kind }: { kind: MarkKind }) {
 export function ResearchArtwork() {
   return (
     <svg className="research-artwork" viewBox="0 0 600 210" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="482" cy="100" r="88" stroke="var(--vermilion)" strokeWidth="18" opacity=".14" />
+      <path d="M20 24H164V174H20Z" fill="var(--blue)" opacity=".045" />
+      {Array.from({ length: 24 }, (_, i) => <circle key={i} cx={424 + (i % 8) * 18} cy={167 + Math.floor(i / 8) * 12} r="1.2" fill="var(--blue)" opacity=".4" />)}
       <path d="M15 188H585M45 20V188M145 20V188M245 20V188M345 20V188M445 20V188M545 20V188" stroke="currentColor" opacity=".12"/>
       <path d="M218 22L383 10L394 182L229 194Z" fill="var(--surface)" stroke="currentColor" strokeOpacity=".3"/>
       <path d="M202 13L367 25L355 197L190 185Z" fill="var(--bg)" stroke="currentColor" strokeWidth="1.5"/>

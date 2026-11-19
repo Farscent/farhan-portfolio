@@ -13,6 +13,27 @@ PRD.md governs the base redesign. The owner's subsequent instruction replaces re
 
 Implementation lives in src/app/magazine.css, layered after the existing stylesheet to preserve shared routes and interaction behavior.
 
+## V7 editorial interaction refinement
+
+The current owner brief preserves the illustration-led identity and authorizes typography
+and motion enhancements throughout the existing sections. The six-project collection from
+the curation update remains the public source of truth.
+
+Inter remains the main face. Locally hosted IBM Plex Sans 400/500 supports captions,
+navigation, metadata, and labels. Cobalt rules establish section rhythm; the research
+feature uses a pale-blue print field, the existing original artwork, and a fine border.
+The contact ending uses a circular directional symbol and a deliberately broken headline.
+
+`src/app/editorial-motion.css` adds the refinement layer. `Reveal` provides visible-first,
+one-time text and image entrances; `HeroIntro` sequences the existing hero content.
+CSS scroll timelines progressively enhance selected artwork and decorative elements on
+desktop. Core content never fades away on exit. A live media-query subscription cancels
+active entrances when reduced motion is enabled. Existing server-rendered content,
+portrait dimensions, university marks, project illustrations, and hobby artwork remain.
+
+Reference observations and browser-access limitations are recorded in
+`design-references/V7-DIRECTION.md`.
+
 ## V6 editorial graphics
 
 About retains its prose and asymmetric rows, adding custom symbols for data flow, strategic decisions, and team coordination. Shared open geometry, two-unit strokes, cobalt, and vermilion live in `src/components/editorial-graphic.tsx`. The analytics award uses a cup with analytical bars; AutoSIEM recognition uses a shield and connected data paths. The research panel uses an original conceptual paper, learning network, and physics illustration with a layered publication treatment. These graphics do not portray research results or add credentials. SVGs are decorative, inherit theme tokens, and introduce no motion or dependencies. Project artwork and hobby illustrations remain unchanged; only existing project numbers are made visible.

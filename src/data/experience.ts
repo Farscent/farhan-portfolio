@@ -24,7 +24,7 @@ export const experience: Experience[] = [
   {
     organization: "RiseIT Consulting",
     role: "Data Engineer Consultant",
-    period: "Present",
+    period: "Sept 2026 — Nov 2026",
     kind: "Technology & strategy",
     description:
       "Contribute to an end-to-end data engineering project under an IBM Data Engineer, working with Google Sheets, BigQuery, ETL/ELT, SQL transformations, validation, analytics modeling, and Looker Studio.",

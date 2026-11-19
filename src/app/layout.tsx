@@ -3,6 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getSiteUrl, profile } from "@/data/profile";
 import "@fontsource-variable/inter";
+import "@fontsource/ibm-plex-sans/latin-400.css";
+import "@fontsource/ibm-plex-sans/latin-500.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

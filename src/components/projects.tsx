@@ -1,23 +1,18 @@
 "use client";
 import { useState } from "react";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { categories, projects } from "@/data/projects";
 import { ProjectVisual } from "./project-visual";
-import { Reveal, SectionHeading } from "./ui";
-
-const orderedProjects = [...projects].sort(
-  (a, b) => Number(b.featured) - Number(a.featured),
-);
+import { Reveal, SectionHeading, useMotionPreference } from "./ui";
 
 export function Projects() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
-  const [expanded, setExpanded] = useState(false);
-  const filtered = orderedProjects.filter(
+  const reduced = useMotionPreference();
+  const filtered = projects.filter(
     (project) => category === "All" || project.category === category,
   );
-  const visible =
-    category === "All" && !expanded ? filtered.slice(0, 4) : filtered;
   return (
     <section className="section work-section" id="work">
       <div className="container">
@@ -25,7 +20,7 @@ export function Projects() {
           number="02"
           label="Selected work"
           title="Things I’ve been building."
-          description="Data pipelines, models, dashboards, and automations. Here’s the work, including what’s still a work in progress."
+          description="Six projects spanning data engineering, business intelligence, analytics, and machine learning."
         />
         <div className="project-toolbar">
           <div
@@ -48,8 +43,15 @@ export function Projects() {
             {String(filtered.length).padStart(2, "0")} projects
           </span>
         </div>
-        <div className="project-grid" id="project-results">
-          {visible.map((project) => (
+        <motion.div
+          key={category}
+          className="project-grid"
+          id="project-results"
+          initial={false}
+          animate={reduced ? { opacity: 1, y: 0 } : { opacity: [0.45, 1], y: [8, 0] }}
+          transition={{ duration: reduced ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {filtered.map((project) => (
             <Reveal key={project.slug} className={`project-entry project-entry-${project.image} ${project.featured ? "project-featured" : "project-compact"}`}>
               <article className="project-card">
                 <Link
@@ -57,7 +59,7 @@ export function Projects() {
                   className="project-image-link"
                   aria-label={`Read the ${project.title} case study`}
                 >
-                  <ProjectVisual variant={project.image} />
+                  <Reveal kind="image"><ProjectVisual variant={project.image} /></Reveal>
                   <span className="image-arrow">
                     <ArrowUpRight size={21} />
                   </span>
@@ -66,7 +68,7 @@ export function Projects() {
                   <div className="project-meta">
                     <span>
                       <b className="project-number">
-                        {String(orderedProjects.indexOf(project) + 1).padStart(
+                        {String(projects.indexOf(project) + 1).padStart(
                           2,
                           "0",
                         )}
@@ -82,6 +84,7 @@ export function Projects() {
                     </Link>
                   </h3>
                   <p className="project-summary">{project.summary}</p>
+                  <p className="project-approach">{project.secondaryFocus}</p>
                   <div className="tech-list">
                     {project.technologies.slice(0, 4).map((tech) => (
                       <span key={tech}>{tech}</span>
@@ -115,23 +118,9 @@ export function Projects() {
               </article>
             </Reveal>
           ))}
-        </div>
+        </motion.div>
         {category === "All" && (
           <div className="more-projects">
-            <button
-              className="button button-outline"
-              onClick={() => setExpanded(!expanded)}
-              aria-expanded={expanded}
-              aria-controls="project-results"
-            >
-              {expanded
-                ? "Show selected projects"
-                : `View all ${projects.length} projects`}
-              <ArrowDown
-                size={16}
-                style={expanded ? { transform: "rotate(180deg)" } : {}}
-              />
-            </button>
             <a
               href="https://github.com/Farscent"
               target="_blank"

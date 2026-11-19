@@ -62,7 +62,7 @@ export default async function ProjectPage({
         <ArrowLeft size={16} /> Back to selected work
       </Link>
       <div className="case-header">
-        <p className="eyebrow">{project.category} / Case study</p>
+        <p className="eyebrow">{project.category} / {project.secondaryFocus}</p>
         <h1>
           {project.title}
           <span className="blue">.</span>
@@ -160,18 +160,6 @@ export default async function ProjectPage({
               <h3>Scope & limitations</h3>
               <p>{project.limitations}</p>
             </div>
-            <p className="source-note">
-              Content checked against the{" "}
-              <a
-                href={`${project.repositoryUrl}#readme`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                repository README <ArrowUpRight size={12} />
-              </a>{" "}
-              on {project.sourceReviewed}. Team outcomes are credited to the
-              project, not claimed as individual results.
-            </p>
           </section>
 
         </div>

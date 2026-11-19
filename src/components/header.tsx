@@ -1,14 +1,21 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { navigation, profile } from "@/data/profile";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
+  const [compact, setCompact] = useState(false);
+  const sentinel = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setCompact(!entry.isIntersecting));
+    if (sentinel.current) observer.observe(sentinel.current);
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     const query = window.matchMedia("(prefers-color-scheme: dark)");
     const onSystem = () => {
@@ -53,7 +60,9 @@ export function Header() {
     } catch {}
   }
   return (
-    <header className="site-header">
+    <>
+    <div className="header-sentinel" ref={sentinel} aria-hidden="true" />
+    <header className={`site-header${compact ? " is-scrolled" : ""}`}>
       <div className="nav-shell container">
         <Link
           href="/"
@@ -116,5 +125,6 @@ export function Header() {
         </div>
       </div>
     </header>
+    </>
   );
 }
