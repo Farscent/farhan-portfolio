@@ -3,6 +3,7 @@
 @import "./editorial.css";
 @import "./magazine.css";
 @import "./editorial-motion.css";
+@import "./community-feature.css";
 
 @theme inline {
   --color-background: var(--bg);

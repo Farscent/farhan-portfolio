@@ -6,11 +6,11 @@ import {
   ArrowUpRight,
   MapPin,
   MoveUpRight,
-  Users,
 } from "lucide-react";
 import { EditorialDivider, HeroIntro, Reveal, SectionHeading, SocialLinks } from "@/components/ui";
 import { Projects } from "@/components/projects";
 import { BeyondCode } from "@/components/beyond-code";
+import { CommunityFeature } from "@/components/community-feature";
 import { EditorialMark, ResearchArtwork } from "@/components/editorial-graphic";
 import { getSiteUrl, profile } from "@/data/profile";
 import { contactPrivacy } from "@/data/contact";
@@ -287,40 +287,35 @@ export default function Home() {
             title="A few milestones."
           />
           <div className="achievement-layout">
-            <div>
-              {achievements.map((item, index) => (
-                <Reveal key={item.title} delay={index * 0.08}>
-                  <a
-                    className="award-row"
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+            <div className="awards-index">
+              {achievements.map((item, index) => {
+                const rowClass = index < 2 ? "award-row award-major" : "award-row";
+                const content = <>
                     <span className="award-icon">
-                      <EditorialMark kind={index === 0 ? "analytics" : "security"} />
+                      <EditorialMark kind={item.icon} />
                     </span>
                     <div>
                       <span className="award-year">{item.year}</span>
                       <h3>{item.title}</h3>
                       <p>{item.context}</p>
-                      <span className="award-detail">{item.detail}</span>
+                      {item.detail && <span className="award-detail">{item.detail}</span>}
                     </div>
-                    <ArrowUpRight size={19} />
-                  </a>
-                </Reveal>
-              ))}
-              <Reveal>
-                <div className="community-note">
-                  <Users size={20} />
-                  <p>
-                    <strong>Learning is better when shared.</strong>
-                    <br />
-                    Community leadership at GDGoC UGM and introductory Data
-                    Science & AI teaching for 80+ high school students.
-                  </p>
-                </div>
-              </Reveal>
+                </>;
+                return (
+                  <Reveal key={`${item.title}-${item.context}`} delay={(index % 3) * 0.08}>
+                    {item.href ? (
+                      <a className={rowClass} href={item.href} target="_blank" rel="noopener noreferrer">
+                        {content}
+                        <ArrowUpRight size={19} />
+                      </a>
+                    ) : (
+                      <article className={rowClass}>{content}</article>
+                    )}
+                  </Reveal>
+                );
+              })}
             </div>
+            <div className="milestone-features">
             <Reveal>
               <article className="research-card">
                 <div className="research-top">
@@ -353,6 +348,8 @@ export default function Home() {
                 </div>
               </article>
             </Reveal>
+            <CommunityFeature />
+            </div>
           </div>
         </div>
       </section>

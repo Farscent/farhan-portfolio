@@ -29,6 +29,28 @@
 .project-card h3 { text-wrap: balance; }
 .award-row h3 { font-weight: 650; letter-spacing: -.025em; }
 .award-year { font-variant-numeric: tabular-nums; color: var(--blue); }
+/* V11: only the awards index receives more breathing room and clearer metadata. */
+.awards-index .award-row { position: relative; padding-block: 36px; align-items: flex-start; }
+.awards-index .award-icon { margin-top: 0; }
+.awards-index .award-row > svg:last-child { align-self: center; }
+.awards-index .award-year { font-size: 14px; line-height: 1.5; font-weight: 500; }
+.awards-index .award-row h3 { margin-top: 6px; line-height: 1.3; }
+.awards-index .award-row p { margin-top: 8px; font-size: 16px; line-height: 1.6; }
+.awards-index .award-detail { margin-top: 6px; font-size: 14px; line-height: 1.65; }
+.awards-index .award-major h3 { font-weight: 700; }
+.awards-index .award-major .award-icon { background: var(--blue-soft); }
+.awards-index .award-major::before { content: ""; position: absolute; left: 0; top: -1px; width: 40px; height: 2px; background: var(--blue); }
+.awards-index > div:nth-child(2) .award-major::before { background: var(--vermilion); }
+@media (hover: hover) {
+  .awards-index a.award-row:hover { background-color: color-mix(in srgb, var(--blue) 4%, transparent); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .awards-index .editorial-mark { transition: transform .3s var(--ease-editorial); }
+  .awards-index a.award-row:is(:hover, :focus-visible) .editorial-mark { transform: translateY(-2px); }
+}
+@media (max-width: 1000px) {
+  .awards-index .award-row { padding-block: 28px; }
+}
 .experience-period, .education-details { font-variant-numeric: tabular-nums; }
 .experience-content > p, .education-note { line-height: 1.65; }
 .research-card { box-shadow: none; border-top-width: 1px; padding-top: 24px; }

@@ -1,0 +1,36 @@
+/* V10: compact editorial highlights beneath the unchanged research feature. */
+.milestone-features { display: grid; align-content: start; gap: 24px; min-width: 0; }
+.milestone-features > div { min-width: 0; }
+.community-feature { container: community / inline-size; border: 1px solid var(--line); background: var(--surface); }
+.community-label { margin: 0; padding: 10px 22px; font: 500 13px/1.5 var(--font-editorial); color: var(--blue); }
+.community-print { overflow: hidden; aspect-ratio: 3 / 1; }
+.community-artwork { display: block; width: 100%; height: 100%; }
+.community-content { padding: 16px 22px; }
+.community-content h3 { font-size: 27px; font-weight: 650; line-height: 1.15; letter-spacing: -.03em; text-wrap: balance; }
+.community-contributions { list-style: none; margin: 12px 0 0; padding: 0; }
+.community-contributions li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); }
+.community-number { padding-top: 1px; font: 500 13px/1.5 var(--font-editorial); font-variant-numeric: tabular-nums; color: var(--blue); }
+.community-role { display: block; font: 400 13px/1.5 var(--font-editorial); color: var(--muted); }
+.community-contributions h4 { margin-top: 3px; font-size: 16px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; text-wrap: pretty; }
+.community-contributions p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+.community-contributions strong { font-weight: 550; color: var(--text); }
+.community-details { border-top: 1px solid var(--line); padding-top: 12px; }
+.community-details summary { width: fit-content; cursor: pointer; color: var(--blue); font: 500 13px/1.5 var(--font-editorial); }
+.community-details summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.community-details p { margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+@container community (min-width: 440px) {
+  .community-contributions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px; }
+  .community-contributions li { display: block; padding-block: 10px; }
+  .community-number { display: inline-block; margin-right: 8px; }
+  .community-contributions li > div { display: contents; }
+  .community-role { display: inline; }
+  .community-contributions h4 { margin-top: 7px; }
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  .community-label { padding-inline: 18px; }
+  .community-content { padding-inline: 18px; }
+}
+@media (max-width: 760px) {
+  .community-label { padding-inline: 20px; }
+  .community-content { padding: 20px; }
+}
