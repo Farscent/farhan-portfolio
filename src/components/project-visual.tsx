@@ -2,6 +2,10 @@ import { useId } from "react";
 import type { Visual } from "@/data/projects";
 
 const descriptions: Record<Visual, string> = {
+  stocks: "A rising and falling blue price ribbon crosses candlestick forms and offset revenue bars on a market grid: a conceptual financial print, without measured values.",
+  sentiment: "Overlapping speech fragments, connected nodes, and a three-part distribution ring evoke Indonesian text processing and social research, without depicting measured sentiment shares.",
+  poverty: "An abstract Indonesian archipelago overlaps a statistical field and a line that continues as a dotted projection: a conceptual study of socioeconomic trends, without forecast values.",
+  calories: "An articulated runner crosses a heart-rate trace, scattered observations, and a regression curve: a conceptual sports-science study, without model results.",
   warehouse: "Travel routes weave into ordered booking records: an abstract study of bringing scattered events together.",
   dashboard: "Separate channels converge around a shared focal point: an abstract study of marketing attention and acquisition.",
   workflow: "Folded correspondence follows a blue thread toward a review seal: an abstract study of organizing internship applications.",
@@ -19,6 +23,87 @@ const orange = "#f26332";
 // Original vector print studies. Positions and forms are compositional, never measured data.
 function Artwork({ variant, pattern }: { variant: Visual; pattern: string }) {
   switch (variant) {
+    case "stocks":
+      return <>
+        <rect width="1000" height="640" fill="#e8e5dd" />
+        <g stroke={blue} strokeWidth="1" opacity=".18">
+          {Array.from({length:12},(_,i)=><path key={i} d={`M${60+i*80} 0V640M0 ${40+i*80}H1000`} />)}
+        </g>
+        <circle cx="820" cy="145" r="195" fill={paper} />
+        <g fill={ink}>
+          {[160,245,340,275,400].map((h,i)=><rect key={i} x={560+i*72} y={580-h} width="45" height={h} opacity={.14+i*.16} />)}
+        </g>
+        <g stroke={ink} strokeWidth="2">
+          {[330,240,285,160,210,130].map((y,i)=><g key={i}><path d={`M${125+i*100} ${y-65}V${y+100}`} /><rect x={107+i*100} y={y-25} width="36" height={i%2?75:45} fill={i%2?orange:paper} /></g>)}
+        </g>
+        <path d="M-40 500L120 390L230 420L340 280L450 325L565 190L680 260L790 130L1040 205" stroke={blue} strokeWidth="28" fill="none" />
+        <path d="M-40 500L120 390L230 420L340 280L450 325L565 190L680 260L790 130L1040 205" stroke={paper} strokeWidth="2" fill="none" />
+        <circle cx="790" cy="130" r="28" fill={orange} stroke={paper} strokeWidth="6" />
+        <rect x="65" y="65" width="190" height="105" fill={`url(#${pattern})`} />
+        <path d="M72 570H284M72 584H185" stroke={ink} strokeWidth="2" />
+      </>;
+    case "sentiment":
+      return <>
+        <rect width="1000" height="640" fill={blue} />
+        <g stroke={paper} strokeWidth="2" opacity=".4">
+          <path d="M100 110L440 320L800 110L870 490L440 320L160 550M100 110L160 550M800 110L160 550" />
+          {[[100,110],[800,110],[870,490],[160,550]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="13" fill={blue} />)}
+        </g>
+        <g transform="translate(100 120) rotate(-9 230 130)">
+          <path d="M0 0H460V235H175L95 310V235H0Z" fill={paper} />
+          <path d="M50 59H342M50 82H400M50 105H286M50 151H225M250 151H390M50 174H350" stroke={ink} strokeWidth="5" />
+          <rect x="42" y="141" width="192" height="43" fill={orange} opacity=".65" />
+        </g>
+        <g transform="translate(555 298) rotate(8 150 100)">
+          <path d="M0 0H345V190H284V252L214 190H0Z" fill={ink} />
+          <path d="M36 44H300M36 65H250M36 86H285" stroke={paper} strokeWidth="3" />
+          {[0,1,2,3,4,5,6,7,8].map(i=><rect key={i} x={37+i*29} y="126" width={i%3===0?18:10} height="30" fill={i%3===0?orange:paper} />)}
+        </g>
+        <circle cx="756" cy="167" r="88" fill="none" stroke={paper} strokeWidth="35" />
+        <path d="M756 79A88 88 0 0 1 844 167" fill="none" stroke={orange} strokeWidth="35" />
+        <path d="M668 167A88 88 0 0 1 756 79" fill="none" stroke={ink} strokeWidth="35" />
+        <rect x="315" y="480" width="180" height="110" fill={`url(#${pattern})`} />
+        <path d="M75 575H245M75 587H190" stroke={paper} strokeWidth="2" />
+      </>;
+    case "poverty":
+      return <>
+        <rect width="1000" height="640" fill="#dfe4d8" />
+        <g stroke={blue} opacity=".22">
+          {[0,1,2,3,4,5,6,7,8].map(i=><path key={i} d={`M${70+i*110} 45V595M45 ${70+i*65}H955`} />)}
+        </g>
+        <circle cx="280" cy="275" r="208" fill={paper} />
+        <g fill={blue} transform="translate(40 90) scale(.91)">
+          <path d="M60 70L113 87L245 272L221 320L163 257L85 145Z" />
+          <path d="M242 347L325 340L480 377L465 401L308 380Z" />
+          <path d="M338 150L415 92L492 144L521 232L465 287L370 265Z" />
+          <path d="M605 162L635 224L712 194L676 256L711 318L641 280L590 330L602 248L553 197Z" />
+          <path d="M779 270L845 250L976 308L940 394L844 367L802 320Z" />
+          <ellipse cx="539" cy="399" rx="28" ry="12" /><ellipse cx="609" cy="416" rx="24" ry="10" /><ellipse cx="677" cy="429" rx="29" ry="13" />
+        </g>
+        <path d="M60 530L230 470L360 490L490 407L620 420" stroke={ink} strokeWidth="5" fill="none" />
+        <path d="M620 420L750 353L940 305" stroke={orange} strokeWidth="5" strokeDasharray="10 12" fill="none" />
+        <path d="M620 420L940 215V395Z" fill={orange} opacity=".12" />
+        <path d="M620 70V570" stroke={ink} strokeWidth="2" strokeDasharray="3 9" />
+        {[[60,530],[230,470],[360,490],[490,407],[620,420]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="8" fill={paper} stroke={ink} strokeWidth="3" />)}
+        <rect x="770" y="460" width="170" height="130" fill={`url(#${pattern})`} />
+        <path d="M74 67H250M74 80H185" stroke={ink} strokeWidth="2" />
+      </>;
+    case "calories":
+      return <>
+        <rect width="1000" height="640" fill={ink} />
+        <circle cx="495" cy="300" r="235" fill={blue} />
+        <circle cx="495" cy="300" r="270" stroke={paper} strokeWidth="1" strokeDasharray="3 12" />
+        <path d="M-20 370H180L215 320L250 420L300 215L345 370H430M650 370H740L775 320L810 390L850 290L890 370H1020" stroke={orange} strokeWidth="7" fill="none" />
+        <g stroke={paper} strokeWidth="32" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M524 215L463 331L540 407L486 530M463 331L370 410L267 426M503 255L601 293L664 230M503 255L410 235L357 290" />
+        </g>
+        <circle cx="549" cy="150" r="40" fill={orange} />
+        <g fill={ink}>{[[503,255],[463,331],[540,407],[370,410]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="10" />)}</g>
+        <path d="M80 550C215 535 290 497 380 475S650 470 902 120" stroke={paper} strokeWidth="2" fill="none" />
+        <g fill={orange}>{[[100,510],[180,553],[260,490],[345,508],[630,430],[720,300],[797,254],[875,120]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="6" />)}</g>
+        <path d="M82 80H240M82 93H179" stroke={paper} strokeWidth="2" />
+        <rect x="770" y="462" width="180" height="130" fill={`url(#${pattern})`} />
+      </>;
     case "warehouse":
       return <>
         <rect width="1000" height="640" fill={blue} />

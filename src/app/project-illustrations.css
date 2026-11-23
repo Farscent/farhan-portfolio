@@ -1,4 +1,6 @@
 ﻿/* Original geometric print compositions: conceptual art, never plotted results. */
+.work-section .filter-total { margin-left: 5px; font-size: .85em; opacity: .65; font-variant-numeric: tabular-nums; }
+.work-section .more-projects > button { min-height: 44px; }
 .project-visual {
   width: 100%;
   position: relative;

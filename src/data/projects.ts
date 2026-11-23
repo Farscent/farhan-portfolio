@@ -13,7 +13,11 @@ export type Visual =
   | "health"
   | "cafes"
   | "fiscal"
-  | "attrition";
+  | "attrition"
+  | "stocks"
+  | "sentiment"
+  | "poverty"
+  | "calories";
 export interface Project {
   slug: string;
   title: string;
@@ -264,5 +268,102 @@ export const projects: Project[] = [
     "status": "Data science study",
     "sourceReviewed": "2026-11-19",
     "secondaryFocus": "Clustering & Recommendation Analysis"
+  },
+  {
+    slug: "stockscope",
+    title: "StockScope — Stock Market Analytics",
+    category: "Data Analytics",
+    secondaryFocus: "Financial Analytics / Business Intelligence",
+    eyebrow: "Market movements, in business context",
+    summary: "An interactive financial analytics platform exploring stock performance, market indicators, and company revenue through a reproducible Python pipeline.",
+    problem: "Daily stock prices and quarterly revenue have different frequencies and meanings. Comparing Tesla and GameStop requires validated dates, explicit price adjustments, and consistent revenue units.",
+    approach: [
+      "Collect adjusted historical prices through yfinance; validate, sort, and deduplicate observations while preserving missing volume.",
+      "Calculate daily returns, complete-window 20/50-session moving averages, and trading-volume summaries.",
+      "Analyze reported quarterly revenue in USD millions independently of the price window and compare stocks on shared trading dates.",
+      "Share modular data, preprocessing, analytics, and Plotly functions between a research notebook and a five-view Streamlit dashboard, with mocked-provider tests."
+    ],
+    architecture: ["Yahoo Finance / yfinance", "Validation + preprocessing", "Pure analytics functions", "Plotly visualizations", "Streamlit + research notebook", "Automated tests"],
+    outcome: "Delivers interactive price, volume, revenue, and comparative performance views, plus data exploration and CSV downloads. Tesla (TSLA) and GameStop (GME) are the primary research examples; findings depend on the selected window and provider coverage.",
+    limitations: "Provider data may be delayed, revised, or unavailable. Prices and revenue are descriptive series with different reporting frequencies; their comparison establishes no causal relationship. This is not a forecasting or trading recommendation system. Tests use synthetic inputs and mocked providers.",
+    technologies: ["Python", "Pandas", "NumPy", "yfinance", "Plotly", "Streamlit", "pytest"],
+    repositoryUrl: "https://github.com/Farscent/Stock-Scope",
+    demoUrl: "https://stock-scope-dashboard.streamlit.app",
+    image: "stocks",
+    featured: false,
+    status: "Independent financial analytics project",
+    sourceReviewed: "2026-11-23"
+  },
+  {
+    slug: "gamadata-tni-sentiment",
+    title: "Gamadata 1 — TNI Law Sentiment Analysis",
+    category: "Data Analytics",
+    secondaryFocus: "Natural Language Processing / Social Research",
+    eyebrow: "Reading patterns in public discourse",
+    summary: "A social media sentiment analysis project examining public discourse surrounding Indonesia's 2025 TNI Law revision through NLP and data visualization.",
+    problem: "How do collected Twitter posts express sentiment toward the 2025 TNI Law revision, and which words recur within the resulting sentiment categories?",
+    approach: [
+      "Collect Twitter posts using topic-specific keyword queries, then remove duplicates and clean mentions, punctuation, and noisy text.",
+      "Tokenize Indonesian text, remove Sastrawi stopwords, normalize slang, and apply Gemini-assisted text normalization.",
+      "Prompt Gemini 2.0 Flash to label sentiment specifically toward the proposed law, using positive, neutral, and negative categories.",
+      "Explore category counts, keyword frequencies, and word clouds with Pandas, Matplotlib, and Seaborn."
+    ],
+    architecture: ["Keyword-based Twitter collection", "Cleaning + deduplication", "Indonesian text processing", "Gemini-assisted labeling", "Keyword analysis", "Sentiment visualizations"],
+    outcome: "The README reports analysis of 4,472 collected tweets. The research delivers sentiment summaries and recurring-keyword visualizations as part of the Data Research Division of BEM KM UGM's Gamadata initiative.",
+    limitations: "These are patterns in a keyword-selected Twitter dataset, not representative estimates of Indonesian public opinion. LLM-generated labels have no documented independent validation metrics and may misread context or sarcasm. The batching code can pad missing responses with neutral labels, potentially affecting category counts.",
+    technologies: ["Python", "Pandas", "Sastrawi", "NLTK", "Gemini API", "Matplotlib", "Seaborn", "WordCloud"],
+    repositoryUrl: "https://github.com/Farscent/Gamadata-1-Sentiment-Analysis",
+    image: "sentiment",
+    featured: false,
+    status: "BEM KM UGM · Data Research Division",
+    sourceReviewed: "2026-11-23"
+  },
+  {
+    slug: "gamadata-poverty-forecasting",
+    title: "Gamadata 2 — Poverty Line Forecasting",
+    category: "Data Analytics",
+    secondaryFocus: "Socioeconomic Forecasting / Data Science",
+    eyebrow: "Historical statistics, future questions",
+    summary: "A socioeconomic forecasting study analyzing Indonesia's poverty-line trends using historical government statistics and data-driven modeling.",
+    problem: "How can historical BPS poverty-line statistics and socioeconomic indicators support an exploratory view of future poverty-line trends across Indonesia?",
+    approach: [
+      "Collect and standardize BPS poverty-line data and supporting socioeconomic series, including wages, unemployment, and regional economic indicators.",
+      "Align regional and year identifiers, inspect missingness, and prepare features for exploratory analysis and modeling.",
+      "Build provincial forecasts with auto-ARIMA, Linear Regression, and Prophet; investigate an explicitly unfinished XGBoost experiment with lag and rolling-mean socioeconomic features.",
+      "Visualize provincial projections and their unweighted mean in a separate national-summary notebook, keeping projections distinct from observations."
+    ],
+    architecture: ["BPS historical statistics", "Regional data preparation", "Socioeconomic indicators", "Exploratory analysis", "Predictive modeling", "Provincial + summary visualizations"],
+    outcome: "Developed under the Data Research Division of BEM KM UGM. The README frames a 2025–2030 forecasting study; the national-summary notebook visualizes supplied provincial projections for 2025–2029 and calculates their unweighted mean.",
+    limitations: "Project projections are research estimates, not observed outcomes or official BPS forecasts. The poverty line is a monetary threshold, not the poverty rate. An unweighted mean of provincial projections does not reproduce an official national statistic. The notebook marks its multivariate XGBoost experiment as unfinished; no validated final-model selection or accuracy score is claimed here. Missing data and future socioeconomic changes limit interpretation.",
+    technologies: ["Python", "Pandas", "Scikit-learn", "Matplotlib", "pmdarima", "Prophet", "XGBoost"],
+    repositoryUrl: "https://github.com/Farscent/Gamadata-2-Forecasting-Poverty-Rate",
+    image: "poverty",
+    featured: false,
+    status: "BEM KM UGM · Data Research Division",
+    sourceReviewed: "2026-11-23"
+  },
+  {
+    slug: "calorie-expenditure-prediction",
+    title: "Calorie Expenditure Prediction",
+    category: "Machine Learning",
+    secondaryFocus: "Regression / Predictive Modeling",
+    eyebrow: "From exercise measurements to model evaluation",
+    summary: "An end-to-end machine learning regression project predicting exercise-related calorie expenditure using XGBoost and hyperparameter optimization.",
+    problem: "Can physiological characteristics and exercise measurements estimate calorie expenditure within an academic regression dataset?",
+    approach: [
+      "Follow CRISP-DM to define the objective and explore demographic, physiological, and exercise features across 9,000 labeled observations documented in the README.",
+      "Prepare features using IQR-based outlier capping and categorical encoding, then create an 80/20 training-validation split.",
+      "Compare Linear Regression, Random Forest Regressor, and XGBoost Regressor; configure Optuna to minimize validation RMSE across 1,000 trials.",
+      "Report regression evaluation with MAE, MSE, R², and five-fold cross-validation; generate predictions for the supplied unlabeled exercise records."
+    ],
+    architecture: ["Exercise + physiological data", "EDA + preprocessing", "Regression comparison", "Optuna optimization", "Validation + cross-validation", "Dataset predictions"],
+    outcome: "Best Project — OmahTI Learning Center, Data Science & AI Track. The saved tuned-model notebook output reports MAE 0.9518, MSE 2.0415, and R² 0.9995 on its validation split. These are academic dataset results, not externally validated performance.",
+    limitations: "Optuna repeatedly evaluates the same validation split, so its final scores are not an untouched test estimate. Preprocessing occurs before the split, and the saved optimization output does not document completion of all 1,000 configured trials. External validation remains necessary. This academic model is not clinically validated or suitable for medical decision-making.",
+    technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "XGBoost", "Optuna"],
+    repositoryUrl: "https://github.com/Farscent/Calorie-Expenditure-Prediction",
+    image: "calories",
+    featured: false,
+    status: "Best Project · OmahTI Learning Center, Data Science & AI Track",
+    sourceReviewed: "2026-11-23"
   }
 ];

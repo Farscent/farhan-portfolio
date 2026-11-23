@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowUpRight, Github } from "lucide-react";
@@ -9,10 +9,13 @@ import { Reveal, SectionHeading, useMotionPreference } from "./ui";
 
 export function Projects() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
+  const [expanded, setExpanded] = useState(false);
+  const expandControl = useRef<HTMLButtonElement>(null);
   const reduced = useMotionPreference();
   const filtered = projects.filter(
     (project) => category === "All" || project.category === category,
   );
+  const visible = category === "All" && !expanded ? filtered.slice(0, 6) : filtered;
   return (
     <section className="section work-section" id="work">
       <div className="container">
@@ -20,7 +23,7 @@ export function Projects() {
           number="02"
           label="Selected work"
           title="Things I’ve been building."
-          description="Six projects spanning data engineering, business intelligence, analytics, and machine learning."
+          description="Ten projects spanning data engineering, business intelligence, analytics, and machine learning."
         />
         <div className="project-toolbar">
           <div
@@ -35,12 +38,12 @@ export function Projects() {
                 aria-pressed={category === item}
                 className={category === item ? "selected" : ""}
               >
-                {item}
+                {item} <span className="filter-total">{projects.filter(project => item === "All" || project.category === item).length}</span>
               </button>
             ))}
           </div>
           <span className="project-count" aria-live="polite">
-            {String(filtered.length).padStart(2, "0")} projects
+            {visible.length === filtered.length ? `${String(filtered.length).padStart(2, "0")} projects` : `${visible.length} of ${filtered.length} projects`}
           </span>
         </div>
         <motion.div
@@ -51,7 +54,7 @@ export function Projects() {
           animate={reduced ? { opacity: 1, y: 0 } : { opacity: [0.45, 1], y: [8, 0] }}
           transition={{ duration: reduced ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
-          {filtered.map((project) => (
+          {visible.map((project) => (
             <Reveal key={project.slug} className={`project-entry project-entry-${project.image} ${project.featured ? "project-featured" : "project-compact"}`}>
               <article className="project-card">
                 <Link
@@ -121,6 +124,22 @@ export function Projects() {
         </motion.div>
         {category === "All" && (
           <div className="more-projects">
+            <button
+              ref={expandControl}
+              type="button"
+              className="button button-outline"
+              aria-expanded={expanded}
+              aria-controls="project-results"
+              onClick={() => {
+                if (expanded) {
+                  // Keep the focused control on screen as the gallery shrinks.
+                  requestAnimationFrame(() => expandControl.current?.scrollIntoView({ block: "center", behavior: reduced ? "instant" : "smooth" }));
+                }
+                setExpanded(value => !value);
+              }}
+            >
+              {expanded ? "Show fewer projects" : `View all ${projects.length} projects`}
+            </button>
             <a
               href="https://github.com/Farscent"
               target="_blank"
