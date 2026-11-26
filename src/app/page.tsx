@@ -16,7 +16,7 @@ import { getSiteUrl, profile } from "@/data/profile";
 import { contactPrivacy } from "@/data/contact";
 import { experience } from "@/data/experience";
 import { Education } from "@/components/education";
-import { skills } from "@/data/skills";
+import { collaborationSkills, skills } from "@/data/skills";
 import { achievements, research } from "@/data/achievements";
 
 export const metadata = { alternates: { canonical: "/" } };
@@ -75,8 +75,7 @@ export default function Home() {
               artificial intelligence, and the intersection of technology and business.
             </p>
             <p className="hero-personal">
-              Powered by curiosity, <a href="#beyond-code">anime</a>, and an
-              unreasonable interest in <a href="#beyond-code">cars</a>.
+              <a href="#beyond-code">My other interests?</a>
             </p>
             <div className="hero-buttons">
               <a className="button button-primary" href="#work">Explore my work <ArrowDownRight size={17} /></a>
@@ -249,15 +248,6 @@ export default function Home() {
               Tools I use for data work, alongside the planning and people
               skills that help a project come together.
             </p>
-            <div className="toolkit-mark" aria-hidden="true">
-              {"{ "}
-              <span>learn</span>
-              {" → "}
-              <span>build</span>
-              {" → "}
-              <span>repeat</span>
-              {" }"}
-            </div>
           </div>
           <div className="skill-groups">
             {skills.map((group, i) => (
@@ -267,15 +257,16 @@ export default function Home() {
                     <span>0{i + 1}</span>
                     <h3>{group.title}</h3>
                   </div>
-                  <div className="skill-chips">
+                  <ul className="skill-index">
                     {group.items.map((item) => (
-                      <span key={item}>{item}</span>
+                      <li key={item}>{item}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </Reveal>
             ))}
           </div>
+          <div className="collaboration-skills"><h3>Alongside the technical work</h3><p>{collaborationSkills.join(" · ")}</p></div>
         </div>
       </section>
 

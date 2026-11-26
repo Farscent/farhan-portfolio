@@ -25,19 +25,39 @@ export function Header() {
       document.documentElement.dataset.theme = query.matches ? "dark" : "light";
     };
     query.addEventListener("change", onSystem);
+    const visibleSections = new Set<Element>();
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries)
-          if (entry.isIntersecting) setActive(entry.target.id === "top" ? "" : entry.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) visibleSections.add(entry.target);
+          else visibleSections.delete(entry.target);
+        }
+        const nearest = [...visibleSections].sort((a, b) =>
+          Math.abs(a.getBoundingClientRect().top - window.innerHeight * 0.15) -
+          Math.abs(b.getBoundingClientRect().top - window.innerHeight * 0.15),
+        )[0];
+        if (nearest) setActive(nearest.id === "top" ? "" : nearest.id);
       },
       { rootMargin: "-15% 0px -60% 0px", threshold: 0 },
     );
-    [{ id: "top" }, ...navigation].forEach(({ id }) => {
+    [{ id: "top" }, ...navigation.filter(item => item.id !== "contact")].forEach(({ id }) => {
       const node = document.getElementById(id);
       if (node) observer.observe(node);
     });
+    // The final section may never reach the upper activation band because
+    // scrolling stops at the footer. Activate it while it is visibly in view.
+    const contactObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setActive("contact");
+        else setActive(current => current === "contact" ? "" : current);
+      },
+      { rootMargin: "-15% 0px 0px 0px", threshold: 0.1 },
+    );
+    const contact = document.getElementById("contact");
+    if (contact) contactObserver.observe(contact);
     return () => {
       observer.disconnect();
+      contactObserver.disconnect();
       query.removeEventListener("change", onSystem);
     };
   }, [pathname]);
@@ -87,7 +107,10 @@ export function Header() {
               href={`/#${item.id}`}
               key={item.id}
               aria-current={active === item.id ? "location" : undefined}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setActive(item.id);
+                setOpen(false);
+              }}
             >
               {item.label}
               <span className="active-dot" />

@@ -3,6 +3,7 @@ export const categories = [
   "Data Engineering",
   "Data Analytics",
   "Machine Learning",
+  "Numerical Methods",
 ] as const;
 export type Category = Exclude<(typeof categories)[number], "All">;
 export type Visual =
@@ -17,7 +18,9 @@ export type Visual =
   | "stocks"
   | "sentiment"
   | "poverty"
-  | "calories";
+  | "calories"
+  | "interpolation"
+  | "airflow";
 export interface Project {
   slug: string;
   title: string;
@@ -365,5 +368,48 @@ export const projects: Project[] = [
     featured: false,
     status: "Best Project · OmahTI Learning Center, Data Science & AI Track",
     sourceReviewed: "2026-11-23"
+  },
+  {
+    slug: "image-restoration-interpolation",
+    title: "Image Restoration via Numerical Interpolation",
+    category: "Numerical Methods",
+    secondaryFocus: "Image Processing / Numerical Analysis",
+    eyebrow: "Reconstructing the missing picture",
+    summary: "A numerical computing project exploring image restoration through linear and quadratic interpolation to reconstruct pixels affected by salt-and-pepper noise.",
+    problem: "Salt-and-pepper noise introduces extreme pixel intensities. Treating these outliers as missing points offers a practical way to explore an image as a discrete two-dimensional intensity function.",
+    approach: [
+      "Simulate configurable salt-and-pepper noise in grayscale images.",
+      "Apply Newton linear interpolation using the nearest horizontal neighbors.",
+      "Use three points and divided differences to construct quadratic approximations horizontally and vertically.",
+      "Average the two quadratic approximations and evaluate reconstruction with Mean Squared Error (MSE)."
+    ],
+    architecture: ["Grayscale image", "Salt-and-pepper noise", "Neighboring clean pixels", "Linear / quadratic interpolation", "Bidirectional quadratic averaging", "MSE evaluation"],
+    outcome: "The README demonstrates image reconstruction and compares the noisy, linear-restored, and averaged quadratic-restored examples using MSE.",
+    limitations: "This is a numerical analysis demonstration. The README's approximate MSE values describe its demonstrated example, not general performance across images, noise levels, or other restoration methods. The portfolio artwork is conceptual and does not depict experimental output.",
+    technologies: ["Python", "NumPy", "OpenCV", "Matplotlib"],
+    repositoryUrl: "https://github.com/Farscent/Image-Noise-Removal-Using-Linear-and-Quadratic-Interpolation",
+    image: "interpolation", featured: false, status: "Numerical computing study", sourceReviewed: "2026-11-26"
+  },
+  {
+    slug: "apache-airflow-etl-pipeline",
+    title: "Apache Airflow ETL Pipeline",
+    category: "Data Engineering",
+    secondaryFocus: "Workflow Orchestration / Data Integration",
+    eyebrow: "Three formats, one analytical table",
+    summary: "A data engineering project orchestrating toll transaction ETL workflows using Apache Airflow, with multi-format ingestion, data validation, and SQLite-based analytical storage.",
+    problem: "Vehicle, toll plaza, and payment details are spread across CSV, TSV, and fixed-width files. These records need to match correctly before they can form a reliable table for SQL analysis.",
+    approach: [
+      "Orchestrate nine processing tasks with an Apache Airflow DAG and three parallel extraction branches.",
+      "Check shared transaction details and row counts before combining the three source files by row position.",
+      "Standardize vehicle types and reject duplicate IDs, missing fields, invalid dates, and invalid numeric values.",
+      "Replace records transactionally in SQLite, then analyze them with SQL; test repeat runs and rejection of incorrect data using Bash/Python tests.",
+      "Configure daily scheduling, one retry after five minutes, one active run, and no historical catchup; configure GitHub Actions tests and syntax checks."
+    ],
+    architecture: ["Unpack source archive", "CSV / TSV / fixed-width extraction", "Validate matching rows", "Combine nine fields", "Transform vehicle types", "Validate final records", "Transactional SQLite load", "SQL analysis"],
+    outcome: "The README documents two separate checks: a local Bash/Python run loaded 10,000 course-dataset records, while a live local Airflow run completed all nine tasks with three generated sample transactions. Automated tests cover successful and repeat runs, mismatched rows, and incorrect transformations.",
+    limitations: "A local learning project adapted from an IBM Skills Network lab. The 10,000-record dataset was tested with the local runner, not through Airflow. Daily scheduling reprocesses an existing archive; it does not collect new daily files or implement incremental CDC. Processing uses local files on one machine, not a distributed or production cloud platform. Hosted GitHub Actions execution has not yet been verified in the README.",
+    technologies: ["Apache Airflow", "Python", "Bash", "SQLite", "SQL", "GitHub Actions"],
+    repositoryUrl: "https://github.com/Farscent/apache-airflow-etl-pipeline",
+    image: "airflow", featured: false, status: "Local learning project", sourceReviewed: "2026-11-26"
   }
 ];

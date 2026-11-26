@@ -1,0 +1,61 @@
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+.feature { min-width: 0; }
+.feature:nth-child(2) { margin-top: 32px; }
+.print { margin: 0; }
+.folio {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-block: 14px;
+  color: var(--muted);
+  font: 13px/1.5 var(--font-editorial);
+}
+.folio span:first-child { color: var(--text); font-weight: 500; }
+.folio span:last-child { font-variant-numeric: tabular-nums; }
+.artwork { overflow: hidden; aspect-ratio: 3 / 2; background: #e1e7de; }
+.artwork > svg { display: block; width: 100%; height: 100%; }
+.academic {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding-top: 25px;
+}
+.feature .logo { width: 76px; height: 80px; padding: 0; align-self: start; margin-top: 2px; }
+.copy h3 { font-size: clamp(20px, 1.8vw, 25px); line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; }
+.degree { margin-top: 10px; font-size: 15px; line-height: 1.6; max-width: 44ch; }
+.details { margin-top: 18px; font: 13px/1.7 var(--font-editorial); color: var(--muted); }
+.note { margin-top: 10px; color: var(--muted); font: 13px/1.7 var(--font-editorial); }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .artwork > svg { transition: transform 650ms var(--ease-editorial); }
+  .artwork :global(.campus-greenery), .artwork :global(.campus-atmosphere) { transition: translate 650ms var(--ease-editorial); }
+  .feature:is(:hover, :focus-within) .artwork > svg { transform: scale(1.012); }
+  .feature:is(:hover, :focus-within) .artwork :global(.campus-greenery) { translate: 0 -2px; }
+  .feature:is(:hover, :focus-within) .artwork :global(.campus-atmosphere) { translate: 1px -1px; }
+}
+@media (max-width: 1000px) {
+  .features { gap: 28px; }
+  .feature:nth-child(2) { margin-top: 20px; }
+  .academic { grid-template-columns: 64px minmax(0, 1fr); gap: 16px; }
+  .feature .logo { width: 64px; height: 72px; }
+  .copy h3 { font-size: 21px; }
+  .degree { font-size: 14px; }
+}
+@media (max-width: 760px) {
+  .features { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .feature:nth-child(2) { margin-top: 0; }
+  .academic { padding-top: 22px; }
+  .copy h3 { font-size: 22px; }
+  .degree { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .artwork > svg { transform: none; transition: none; }
+  .artwork :global(.campus-greenery), .artwork :global(.campus-atmosphere) { translate: none; transition: none; }
+}

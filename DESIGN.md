@@ -1,5 +1,25 @@
 # Japanese editorial redesign
 
+## V15 NTU reference refinement
+
+The new `design-references/ntu/the-hive_ntu-singapore.png` supersedes the older NTU photograph for composition. The NTU SVG centers a tall sandstone cylinder with a glazed crown, six finely ribbed teaching-room volumes, curved floor undersides, recessed ground-floor glazing and supports, and shorter overlapping towers. Narrow circulation shafts replace the earlier broad dark core. A layered rain tree frames and partially overlaps the right side; a soft blue print sky and warmer facade distinguish the architectural planes. The exterior 3:2 frame and all Education styles, facts, university assets, links, and interaction behavior remain unchanged. The UGM source is unchanged, verified by hash.
+
+## V14 illustrated Education
+
+NTU refinement: The Hive now uses bulbous pod profiles, denser curved facade ribs, recessed floor joints, directional stone shading, darker receding towers, and a wider charcoal pleated core. Continuous terrace planters, trailing foliage, and rooftop trees integrate nature with the structure. A pale diagonal architectural field, restrained framing, and a small cobalt wayfinding board give the composition its own editorial character. UGM artwork, section geometry, logos, text, and interactions remain unchanged.
+
+Education is a two-column architectural spread with a 32px desktop offset and a single-column mobile layout. Original server-rendered SVG components in `src/components/university-illustrations.tsx` interpret the inspected owner photographs at `design-references/ugm/rectorate.png` and `design-references/ntu/The_Hive,_NTU_(I).jpg`: Balairung's cream colonnade, arcade, tiled roof, and flag; The Hive's ribbed rounded pods, pleated dark core, and planted terraces. These are editorial studies, not surveyed architectural drawings.
+
+Scoped styles live in `src/components/education.module.css`. The artwork has a reserved 3:2 frame, muted architectural colors, fine linework, and restrained print texture. Existing visible-first reveals stagger images and academic text; hover adds a 1.012 artwork scale and minimal foliage movement. Reduced motion removes spatial effects. Official logo assets, safe official-site links, focus, and 1.06 logo hover scale remain. All existing academic copy is preserved; previously removed grades and credit totals remain absent. No other section is redesigned.
+
+## V13 living editorial enhancement
+
+The public collection now contains twelve projects, preserving the existing ten in order and appending numerical image restoration and Apache Airflow ETL. Both use original conceptual vector prints in the existing paper/cobalt/vermilion palette. Repository-verified descriptions distinguish learning demonstrations from production systems.
+
+The project grid retains its six-card preview and primary filters. A complementary four-project horizontal artwork rail uses native scrolling and CSS snap, with keyboard and arrow-button controls. The separate three-frame Airflow storytelling feature was removed at the owner's request. Existing Motion entrances stay visible-first. Native CSS timelines add restrained portrait and hobby parallax without new dependencies or global scrolling changes.
+
+The toolkit uses four categories in a two-column editorial index (one column on mobile), with previous collaboration skills retained below. Existing university assets link to official sites with visible focus and a gentle 1.06 hover scale. Earlier design notes below describe the site's evolution; the current user brief and this V13 note govern project counts and these interactions.
+
 PRD.md governs the base redesign. The owner's subsequent instruction replaces repository imagery with conceptual project artwork; that instruction takes precedence for project visuals.
 
 - Experience mode: the portrait and genuine project imagery lead exploration; work follows the introduction, then profile, chronology, education, toolkit, achievements, interests, and contact.

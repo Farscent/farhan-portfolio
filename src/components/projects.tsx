@@ -6,6 +6,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import { categories, projects } from "@/data/projects";
 import { ProjectVisual } from "./project-visual";
 import { Reveal, SectionHeading, useMotionPreference } from "./ui";
+import { EditorialGallery } from "./editorial-gallery";
 
 export function Projects() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
@@ -23,7 +24,7 @@ export function Projects() {
           number="02"
           label="Selected work"
           title="Things I’ve been building."
-          description="Ten projects spanning data engineering, business intelligence, analytics, and machine learning."
+          description="Twelve projects spanning data engineering, analytics, machine learning, and numerical methods."
         />
         <div className="project-toolbar">
           <div
@@ -149,6 +150,8 @@ export function Projects() {
             </a>
           </div>
         )}
+        <noscript><nav aria-label="Complete project index"><p>Explore all twelve projects:</p><ul>{projects.map(project => <li key={project.slug}><Link href={`/projects/${project.slug}`}>{project.title}</Link></li>)}</ul></nav></noscript>
+        <EditorialGallery />
       </div>
     </section>
   );

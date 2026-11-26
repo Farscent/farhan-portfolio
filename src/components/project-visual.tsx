@@ -2,6 +2,8 @@ import { useId } from "react";
 import type { Visual } from "@/data/projects";
 
 const descriptions: Record<Visual, string> = {
+  interpolation: "A fragmented black-and-white pixel field resolves into an ordered intensity composition, with a blue straight segment and vermilion quadratic curve representing interpolation methods.",
+  airflow: "Three source streams converge through a directed acyclic graph, a transformation stage, and quality checkpoints into a relational database. A conceptual map of toll-data processing.",
   stocks: "A rising and falling blue price ribbon crosses candlestick forms and offset revenue bars on a market grid: a conceptual financial print, without measured values.",
   sentiment: "Overlapping speech fragments, connected nodes, and a three-part distribution ring evoke Indonesian text processing and social research, without depicting measured sentiment shares.",
   poverty: "An abstract Indonesian archipelago overlaps a statistical field and a line that continues as a dotted projection: a conceptual study of socioeconomic trends, without forecast values.",
@@ -23,6 +25,46 @@ const orange = "#f26332";
 // Original vector print studies. Positions and forms are compositional, never measured data.
 function Artwork({ variant, pattern }: { variant: Visual; pattern: string }) {
   switch (variant) {
+    case "interpolation":
+      return <>
+        <rect width="1000" height="640" fill="#e8e5dd" />
+        <circle cx="770" cy="220" r="230" fill={paper} />
+        <g transform="translate(65 85)">
+          {Array.from({length: 260}, (_, i) => {
+            const x = i % 26, y = Math.floor(i / 26);
+            const fragmented = x < 12 && (i * 13 % 17) < 6;
+            const intensity = Math.sin(x * .22 + y * .45) > .1;
+            return <rect key={i} x={x * 33} y={y * 33} width="30" height="30" fill={fragmented ? (i % 2 ? ink : paper) : intensity ? blue : paper} opacity={fragmented ? 1 : .3 + x / 38} />;
+          })}
+        </g>
+        <path d="M80 550L340 465L600 550" stroke={blue} strokeWidth="5" fill="none" />
+        <path d="M410 550Q650 350 915 550" stroke={orange} strokeWidth="7" fill="none" />
+        {[[80,550],[340,465],[600,550],[410,550],[660,450],[915,550]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="9" fill={paper} stroke={i<3?blue:orange} strokeWidth="3" />)}
+        <path d="M500 60V420" stroke={ink} strokeDasharray="3 9" />
+        <rect x="770" y="430" width="150" height="150" fill={`url(#${pattern})`} />
+      </>;
+    case "airflow":
+      return <>
+        <rect width="1000" height="640" fill={blue} />
+        <circle cx="800" cy="85" r="240" fill={paper} opacity=".08" />
+        <g stroke={paper} strokeWidth="3" fill="none">
+          <path d="M80 320H180M180 150V490M180 150H310M180 320H310M180 490H310M400 150H475V320H535M400 320H535M400 490H475V320M625 320H690M760 320H810" />
+        </g>
+        {[150,320,490].map((y,i)=><g key={y}>
+          <rect x="265" y={y-47} width="136" height="94" fill={paper} />
+          <path d={`M286 ${y-20}H375M286 ${y}H${i===1?347:375}M286 ${y+20}H363`} stroke={blue} strokeWidth={i===2?6:3} strokeDasharray={i===0?"12 7":undefined} />
+        </g>)}
+        <circle cx="80" cy="320" r="29" fill={orange} />
+        <path d="M535 270H625V370H535Z" fill={orange} />
+        <path d="M554 294L580 320L554 346M583 294L609 320L583 346" stroke={ink} strokeWidth="3" />
+        <path d="M725 277L768 320L725 363L682 320Z" fill={paper} />
+        <path d="M709 319L721 331L743 307" stroke={blue} strokeWidth="5" />
+        <path d="M810 250V395C810 432 950 432 950 395V250" fill={paper} />
+        <ellipse cx="880" cy="250" rx="70" ry="25" fill={paper} stroke={ink} strokeWidth="2" />
+        <path d="M810 300C810 337 950 337 950 300M810 348C810 385 950 385 950 348" stroke={blue} strokeWidth="2" />
+        <path d="M80 580H300M80 593H210" stroke={paper} strokeWidth="2" />
+        <rect x="560" y="455" width="160" height="130" fill={`url(#${pattern})`} />
+      </>;
     case "stocks":
       return <>
         <rect width="1000" height="640" fill="#e8e5dd" />

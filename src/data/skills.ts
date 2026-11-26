@@ -1,49 +1,8 @@
-// Programming/leadership claims supplied in brief; repository evidence covers the listed data tools.
+﻿// Existing skills regrouped; NumPy, Airflow, and Bash are evidenced by linked projects.
 export const skills = [
-  { title: "Programming", items: ["Python", "SQL", "C++", "R"] },
-  {
-    title: "Data Science & Machine Learning",
-    items: [
-      "Pandas",
-      "Scikit-learn",
-      "XGBoost",
-      "Exploratory Data Analysis",
-      "Feature Engineering",
-      "Predictive Modeling",
-      "Statistical Analysis",
-    ],
-  },
-  {
-    title: "Data Engineering & Analytics",
-    items: [
-      "Google BigQuery",
-      "ETL/ELT",
-      "SQL Transformations",
-      "Data Warehousing",
-      "Data Validation",
-      "Looker Studio",
-      "Google Sheets",
-    ],
-  },
-  {
-    title: "AI & Automation",
-    items: [
-      "Google Gemini",
-      "n8n",
-      "AI Workflow Automation",
-      "Machine Learning Applications",
-    ],
-  },
-  {
-    title: "Product, Business & Leadership",
-    items: [
-      "Project Management",
-      "Product Management",
-      "Technology Consulting",
-      "Business Analytics",
-      "Stakeholder Management",
-      "Team Leadership",
-      "Curriculum Development",
-    ],
-  },
+  { title: "Programming", items: ["Python", "SQL", "R", "C++"] },
+  { title: "Data & Analytics", items: ["Pandas", "NumPy", "Google BigQuery", "Looker Studio", "Google Sheets", "Exploratory Data Analysis", "Statistical Analysis", "Business Analytics"] },
+  { title: "Machine Learning & AI", items: ["Scikit-learn", "XGBoost", "Feature Engineering", "Predictive Modeling", "Machine Learning Applications", "Google Gemini", "AI Workflow Automation"] },
+  { title: "Engineering & Tools", items: ["Apache Airflow", "Bash", "n8n", "ETL/ELT", "SQL Transformations", "Data Warehousing", "Data Validation"] },
 ];
+export const collaborationSkills = ["Project Management", "Product Management", "Technology Consulting", "Stakeholder Management", "Team Leadership", "Curriculum Development"];

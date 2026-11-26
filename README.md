@@ -22,16 +22,16 @@ npm run build
 npm start
 ```
 
-Next.js also validates types during the production build. The homepage, eight `/projects/[slug]` case studies, sharing image, sitemap, and robots are generated without live GitHub API calls. Unknown project slugs return a 404. No API keys, database, or contact-form service are needed.
+Next.js also validates types during the production build. The homepage, twelve `/projects/[slug]` case studies, sharing image, sitemap, and robots are generated without live GitHub API calls. Unknown project slugs return a 404. No API keys, database, or contact-form service are needed.
 
-**Validation:** lint, full TypeScript validation, and the production build pass. The homepage and eight project routes are generated successfully. The connected browser host remains unavailable, so interactive browser and visual viewport checks are not claimed. See [VALIDATION.md](VALIDATION.md) for the actual checks and remaining release items.
+**V13 validation:** lint, TypeScript, and the production build pass. Production-browser checks cover all twelve project routes, filters, expansion, sitemap, keyboard controls, reduced motion, no-JavaScript access, and layouts at 375, 768, 1440, and 1920px. See [VALIDATION.md](VALIDATION.md) for details.
 
 ## Deploy to Vercel
 
 1. Push this project to your GitHub repository, including `package-lock.json`. Generated files, local environment files, original photo/design references, and dependencies are excluded by `.gitignore`.
 2. Import the repository into Vercel; select the **Next.js** framework preset. Keep the default `npm run build` build command and default Next.js output directory.
 3. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a trailing slash. For a custom domain, use that domain. `.env.example` shows local configuration. If unset, the application uses Vercel's production hostname when available; local development falls back to localhost.
-4. Deploy, then verify `/`, all eight project routes, `/sitemap.xml`, `/robots.txt`, `/opengraph-image`, and an unknown route. Check the live sharing image and canonical URLs after attaching a domain.
+4. Deploy, then verify `/`, all twelve project routes, `/sitemap.xml`, `/robots.txt`, `/opengraph-image`, and an unknown route. Check the live sharing image and canonical URLs after attaching a domain.
 
 This project was prepared for Vercel as requested; it has not been uploaded to a hosting account or published.
 
