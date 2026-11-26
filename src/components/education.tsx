@@ -13,7 +13,6 @@ export function Education() {
           <figure className={styles.print}>
             <figcaption className={styles.folio}>
               <span>{item.monogram === "UGM" ? "Balairung" : "The Hive"}</span>
-              <span>{item.monogram} / 0{index + 1}</span>
             </figcaption>
             <Reveal kind="image" className={styles.artwork} delay={index * 0.1}>
               {item.monogram === "UGM" ? <UGMEditorialIllustration /> : <NTUEditorialIllustration />}
